@@ -1,10 +1,17 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {ActivityIndicator, Text, View} from 'react-native';
 // importing the root styles
 import {createStyleSheet, useStyles} from 'react-native-unistyles';
+import {useRecipes} from '../hooks/useRecipes';
 
 export default function Home() {
   const {styles} = useStyles(stylesheet);
+
+  const {data, isLoading} = useRecipes();
+
+  if (isLoading) {
+    return <ActivityIndicator />;
+  }
 
   return (
     <View style={styles.container}>
