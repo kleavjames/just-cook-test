@@ -1,8 +1,11 @@
 import React from 'react';
-import {ActivityIndicator, Text, View} from 'react-native';
+import {ActivityIndicator, FlatList, ListRenderItem, View} from 'react-native';
 // importing the root styles
 import {createStyleSheet, useStyles} from 'react-native-unistyles';
 import {useRecipes} from '../hooks/useRecipes';
+import {CardRecipe} from '../components';
+import {Recipe} from '../types/recipe';
+import {fontPixel, pixelSizeHorizontal} from '../theme/normalize';
 
 export default function Home() {
   const {styles} = useStyles(stylesheet);
@@ -13,9 +16,18 @@ export default function Home() {
     return <ActivityIndicator />;
   }
 
+  const renderRecipes: ListRenderItem<Recipe> = ({item}) => (
+    <CardRecipe recipe={item} />
+  );
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Home</Text>
+      <FlatList
+        keyExtractor={recipe => recipe.uuid}
+        data={data || []}
+        contentContainerStyle={styles.list}
+        renderItem={renderRecipes}
+      />
     </View>
   );
 }
@@ -23,12 +35,7 @@ export default function Home() {
 const stylesheet = createStyleSheet(theme => ({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: theme.colors.background,
   },
-  text: {
-    color: theme.colors.typography,
-    fontSize: theme.size.base,
-  },
+  list: {gap: fontPixel(16), paddingHorizontal: pixelSizeHorizontal(16)},
 }));
