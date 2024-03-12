@@ -26,8 +26,18 @@ const CardRecipe: FC<CardRecipeProps> = ({cardStyle, recipe, ...rest}) => {
         style={styles.image}
       />
       <View style={styles.content}>
-        <Text style={styles.text}>{recipe?.title}</Text>
+        <Text style={styles.textTitle}>{recipe?.title}</Text>
         <Text style={styles.text}>{recipe?.description}</Text>
+        <View style={styles.addInfo}>
+          <View style={styles.addInfoItem}>
+            <Text>Cook:</Text>
+            <Text>2</Text>
+          </View>
+          <View style={styles.addInfoItem}>
+            <Text>Serve:</Text>
+            <Text>2</Text>
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -48,6 +58,13 @@ const stylesheet = createStyleSheet(theme => ({
 
     elevation: fontPixel(2),
   },
+  addInfo: {
+    flexDirection: 'row',
+    gap: fontPixel(10),
+  },
+  addInfoItem: {
+    flexDirection: 'row',
+  },
   content: {
     flexDirection: 'column',
     gap: 10,
@@ -60,6 +77,10 @@ const stylesheet = createStyleSheet(theme => ({
     width: widthPixel(130),
     borderTopLeftRadius: theme.size.base,
     borderBottomLeftRadius: theme.size.base,
+  },
+  textTitle: {
+    color: theme.colors.typography,
+    fontSize: theme.size.lg,
   },
   text: {
     color: theme.colors.typography,

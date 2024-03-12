@@ -2,8 +2,10 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeTab from './HomeTab';
+import RecipeDetail from '../screens/RecipeDetail';
+import {RootStackParamList} from '../types/navigation';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
 function RootStack() {
   return (
@@ -12,6 +14,11 @@ function RootStack() {
         headerShown: false,
       }}>
       <Stack.Screen name="HomeTab" component={HomeTab} />
+      <Stack.Screen
+        name="RecipeDetail"
+        component={RecipeDetail}
+        options={{presentation: 'modal'}}
+      />
     </Stack.Navigator>
   );
 }
