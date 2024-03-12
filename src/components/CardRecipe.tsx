@@ -31,11 +31,15 @@ const CardRecipe: FC<CardRecipeProps> = ({cardStyle, recipe, ...rest}) => {
         <View style={styles.addInfo}>
           <View style={styles.addInfoItem}>
             <Text>Cook:</Text>
-            <Text>2</Text>
+            <Text>{recipe?.cookTime}</Text>
           </View>
           <View style={styles.addInfoItem}>
-            <Text>Serve:</Text>
-            <Text>2</Text>
+            <Text>Servings:</Text>
+            <Text>{recipe?.servings}</Text>
+          </View>
+          <View style={styles.addInfoItem}>
+            <Text>Prep Time:</Text>
+            <Text>{recipe?.prepTime}</Text>
           </View>
         </View>
       </View>
